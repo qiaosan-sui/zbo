@@ -1,0 +1,24 @@
+name: weixin
+on: 
+  workflow_dispstch:
+  schedule:
+    - cron: '0 23 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-atest
+    steps:
+       -users: actions/checkout@v2
+       -name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version:3.9.1
+       -name: Set timezone
+        run: 
+         CD /usr/share/zoneinfo/Asia/Shanghai /etc/localtine
+       -name: install pip package
+        run: 
+          python -n pip install --upgrade pip
+          pip3 install -4 requirements.txt
+       -name: weixin
+        run:
+          python3 main.py
